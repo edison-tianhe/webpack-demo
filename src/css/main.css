@@ -1,3 +1,11 @@
+:root {
+  --red: #d33;
+}
+
+h2 {
+  color: var(--red);
+}
+
 #app{
   text-align: center;
 }
