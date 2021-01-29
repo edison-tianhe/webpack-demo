@@ -28,6 +28,11 @@ module.exports = {
   resolve: {
     // 先尝试 ts 后缀的 TypeScript 源码文件
     extensions: ['.js', '.ts'],
+    // 使用绝对路径指明第三方模块存放的位置，以减少搜索步骤
+    // 其中 __dirname 表示当前工作目录，也就是项目根目录
+    modules: [path.resolve(__dirname, 'node_modules')],
+    // 只采用 main 字段作为入口文件描述字段，以减少搜索步骤
+    // mainFields: ['main'],
   },
   module: {
     rules: [
@@ -45,6 +50,7 @@ module.exports = {
           'babel-loader',
           'eslint-loader',
         ],
+        include: path.resolve(__dirname, 'src'),
       },
       {
         test: /\.ts$/,
