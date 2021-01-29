@@ -11,9 +11,10 @@ module.exports = {
     port: 9527,
     hot: true,
   },
-  mode: 'none',
+  mode: 'development',
   // 输出 source-map 方便直接调试 ES6 源码
-  devtool: 'source-map',
+  devtool: 'cheap-module-eval-source-map',
+  // devtool: 'source-map',
   // JavaScript 执行入口文件
   entry: './src/main.js',
   output: {
@@ -26,7 +27,7 @@ module.exports = {
   },
   resolve: {
     // 先尝试 ts 后缀的 TypeScript 源码文件
-    extensions: ['.ts', '.js'],
+    extensions: ['.js', '.ts'],
   },
   module: {
     rules: [
@@ -54,6 +55,18 @@ module.exports = {
         test: /\.scss$/,
         // SCSS 文件的处理顺序为先 sass-loader 再 css-loader 再 style-loader
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'],
+      },
+      {
+        test: /\.(png|jpg|jpeg|gif|svg)$/,
+        use: [{
+          loader: 'url-loader',
+          options: {
+            // 30KB 以下的文件采用 url-loader
+            limit: 1024 * 30,
+            // 否则采用 file-loader，默认值就是 file-loader
+            fallback: 'file-loader',
+          },
+        }],
       },
     ],
   },

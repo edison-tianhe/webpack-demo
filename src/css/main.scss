@@ -1,4 +1,11 @@
+@import './footer.css';
+@import './main.css';
+
 $blue: #1875e7;
+body {
+  background: url('./../assets/img1.jpeg');
+}
+
 div {
   color: $blue;
 }
