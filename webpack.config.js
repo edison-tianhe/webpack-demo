@@ -2,6 +2,7 @@ const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const DllReferencePlugin = require('webpack/lib/DllReferencePlugin');
 
 module.exports = {
   devServer: {
@@ -11,12 +12,13 @@ module.exports = {
     port: 9527,
     hot: true,
   },
+  // mode: 'production',
   mode: 'development',
   // 输出 source-map 方便直接调试 ES6 源码
   devtool: 'cheap-module-eval-source-map',
   // devtool: 'source-map',
   // JavaScript 执行入口文件
-  entry: './src/main.js',
+  entry: './src/show.jsx',
   output: {
     // 把所有依赖的模块合并输出到一个 bundle.js 文件
     filename: 'bundle.js',
@@ -45,7 +47,7 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader'],
       },
       {
-        test: /\.js$/,
+        test: /\.(js|jsx)$/,
         use: [
           'babel-loader',
           'eslint-loader',
@@ -85,6 +87,12 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: 'public/index.html',
+    }),
+    // 告诉 Webpack 使用了哪些动态链接库
+    new DllReferencePlugin({
+      // 描述 react 动态链接库的文件内容
+      // eslint-disable-next-line global-require
+      manifest: require('./dist/react.manifest.json'),
     }),
   ],
 };

@@ -10,7 +10,6 @@ const show = (content) => {
   window.document.getElementById('app').innerText = `Hello,${content}`;
   window.document.getElementById('app').appendChild(inp);
   window.document.getElementById('app').appendChild(img);
-  console.log(11);
 };
 
 // 通过 CommonJS 规范导出 show 函数
