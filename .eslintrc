@@ -1,0 +1,17 @@
+{
+  "extends": "airbnb",
+  "parserOptions": {
+    "ecmaVersion": 2021
+  },
+  "env": {
+    "es6": true,
+    "node": true,
+    "browser": true
+  },
+  "root": true,
+  // 再自定义一些规则
+  "rules": {
+    // Expected linebreaks to be 'LF' but found 'CRLF'
+    "linebreak-style": 0
+  }
+}
