@@ -1,8 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import Child from './children';
 
 function App() {
-  return <div>1111</div>;
+  return (
+    <>
+      hello, Webpack11
+      <Child />
+    </>
+  );
 }
 
 ReactDOM.render(<App />, document.querySelector('#app'));

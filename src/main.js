@@ -6,4 +6,8 @@ import './css/main.scss';
 
 show('Webpack1');
 
-window.a = 1;
+window.a = 122;
+
+if (module.hot) {
+  module.hot.accept();
+}
